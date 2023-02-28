@@ -35,11 +35,13 @@ const server = http.createServer((req, res) => {
   fs.readFile(filePath, (err, data) => {
     if(err){
       console.log(err)
+
       if(err.code === 'ENOENT') {
         fs.readFile('./src/notfound.html', (err,data) => {
           res.end(data)
         })
       }
+      
       return
     }
 
