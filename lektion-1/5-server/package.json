@@ -1,0 +1,19 @@
+{
+  "name": "5-server",
+  "version": "1.0.0",
+  "description": "En enklare webbserver med node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "keywords": [],
+  "author": "Joakim",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.0"
+  }
+}
