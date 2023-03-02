@@ -2,7 +2,7 @@ const output = document.querySelector('#output')
 const contacts = []
 
 const getContacts = () => {
-  fetch('http://localhost:9999/api/contacts')
+  fetch('/api/contacts')
     .then(res => res.json())
     .then(data => {
       console.log(data)
@@ -11,6 +11,8 @@ const getContacts = () => {
     })
 }
 getContacts()
+
+
 
 const listContacts = () => {
   output.innerHTML = ''
@@ -23,3 +25,32 @@ const listContacts = () => {
     `
   })
 }
+
+
+const addContact = async (contact) => {
+  const res = await fetch('/api/add', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    },
+    body: JSON.stringify(contact)
+  })
+
+  const data = await res.json()
+  contacts.push(data)
+}
+
+
+document.querySelector('#addForm').addEventListener('submit', async e => {
+  e.preventDefault()
+
+  const contact = {
+    firstName: document.querySelector('#fName').value,
+    lastName: document.querySelector('#lName').value,
+    phoneNumber: document.querySelector('#phone').value,
+  }
+
+  await addContact(contact)
+
+  listContacts()
+})

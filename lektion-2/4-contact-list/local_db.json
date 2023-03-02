@@ -1,7 +1,1 @@
-[
-  {
-    "firstName": "Joakim",
-    "lastName": "Wahlström",
-    "phoneNumber": "076 123 45 67"
-  }
-]
+[{"firstName":"Joakim","lastName":"Wahlström","phoneNumber":"076 123 45 67"},{"firstName":"Hans","lastName":"Mattin-Lassei","phoneNumber":"070 123 45 67"},{"firstName":"Jeanette","lastName":"Wankowicz","phoneNumber":"123 45 67 89"},{"firstName":"testq","lastName":"dtsfd","phoneNumber":"12345"},{"firstName":"yaaay","lastName":"nu går vi hem va?","phoneNumber":"23454678"}]
