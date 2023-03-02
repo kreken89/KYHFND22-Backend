@@ -7,21 +7,16 @@ const app = express()
 const PORT = process.env.PORT || 9999;
 app.listen(PORT, () => console.log('server running: http://localhost:' + PORT))
 
-// fetch('url', {
-//   method: 'POST',
-//   headers: {},
-//   body: JSON.stringify({
-
-//   })
-// })
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 app.post('/api/add', (req, res) => {
 
+})
 
-  fs.appendFile('./test.txt', req.body.message, (err) => {
+app.get('/api/contacts', (req, res) => {
 
-  })
-  res.send('testar')
+  const contacts = fs.readFileSync(path.join(__dirname, 'local_db.json'))
+
+  res.end(contacts)
 })
