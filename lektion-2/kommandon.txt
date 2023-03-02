@@ -1,0 +1,22 @@
+# för att skapa ett nytt projekt med npm (skapar en package.json fil)
+  npm init -y                 (-y innebär att vi svarar yes på alla frågor som skulle ha dykt upp)
+
+# för att installera ett paket (dependency)
+  npm i <paketnamn>           (npm i express)
+
+# för att installera ett paket som bara används under utveckling (devDependency)
+  npm i -D <paketnamn>        (npm i -D nodemon)
+
+# för att köra ett script som du har skrivit i package.json filen
+  npm run <scriptnamn>        (npm run dev)
+
+_________________________________________________________________________________________________
+
+
+# för att gå in i en mapp i terminalen
+  cd <mappnamn>               (cd 4-contact-list)
+# om namnet är unikt så kan man skriva början på det och sedan *
+  cd 4-*
+
+# för att gå upp en nivå i terminalen
+  cd ..
