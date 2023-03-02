@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const cors = require('cors')
 
 const app = express()
 
@@ -9,6 +10,9 @@ app.listen(PORT, () => console.log('server running: http://localhost:' + PORT))
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use(cors())
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.post('/api/add', (req, res) => {
 
