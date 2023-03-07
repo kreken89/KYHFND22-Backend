@@ -1,17 +1,27 @@
 {
   "name": "1-electron-contacts",
   "version": "1.0.0",
-  "description": "",
+  "description": "contact list",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
-    "dev": "electronmon ."
+    "start": "electron-forge start",
+    "dev": "electronmon .",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "keywords": [],
-  "author": "",
+  "author": "Joakim Wahlström",
   "license": "ISC",
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.5",
+    "@electron-forge/maker-deb": "^6.0.5",
+    "@electron-forge/maker-rpm": "^6.0.5",
+    "@electron-forge/maker-squirrel": "^6.0.5",
+    "@electron-forge/maker-zip": "^6.0.5",
     "electron": "^23.1.2",
     "electronmon": "^2.0.2"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
   }
 }
