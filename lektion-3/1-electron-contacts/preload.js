@@ -1,5 +1,14 @@
 const { contextBridge, ipcRenderer } = require('electron')
 
+//  ipcRenderer.invoke gör båda dessa saker:
+// ipcRenderer.emit('delete')
+// ipcRenderer.on('delete-svar')
+
 contextBridge.exposeInMainWorld('contacts', {
-  getAll: () => 'testing 123'
+  getAll: () => ipcRenderer.invoke('getAll'),
+  add: (contact) => ipcRenderer.invoke('addContact', contact),
+  delete: (id) => ipcRenderer.invoke('deleteContact', id)
 })
+
+
+

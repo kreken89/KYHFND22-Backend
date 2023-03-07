@@ -49,6 +49,10 @@ body {
   background-color: var(--clr-danger);
   color: #fff;
 }
+.d-flex {
+  display: flex;
+  gap: .2rem;
+}
 #addForm {
   flex: 2;
 }

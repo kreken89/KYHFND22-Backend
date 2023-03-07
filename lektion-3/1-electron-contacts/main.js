@@ -1,5 +1,8 @@
-const { app, BrowserWindow, Menu } = require('electron')
+const { app, BrowserWindow, Menu, ipcMain } = require('electron')
 const path = require('path')
+const fs = require('fs')
+
+const DB_CONNECTION = path.join(__dirname, 'local_db.json');
 
 let mainWindow = null;
 
@@ -29,4 +32,27 @@ app.whenReady().then(() => {
 
 app.on('window-all-closed', () => {
   if(process.platform !== 'darwin') app.quit()
+})
+
+
+
+
+
+
+ipcMain.handle('getAll', () => {
+  const contacts = fs.readFileSync(DB_CONNECTION, 'utf-8')
+  return contacts
+})
+
+ipcMain.handle('addContact', (_, contact) => {
+  // hämtar alla kontakter och konverterar om till JS array
+  const contacts = JSON.parse(fs.readFileSync(DB_CONNECTION, 'utf-8'))
+  contacts.push(contact)
+
+  fs.writeFileSync(DB_CONNECTION, JSON.stringify(contacts))
+  return contact
+})
+
+ipcMain.handle('deleteContact', (_, id) => {
+  
 })
