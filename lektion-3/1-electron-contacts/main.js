@@ -28,7 +28,7 @@ const createMainWindow = () => {
 app.whenReady().then(() => {
   createMainWindow()
 
-  // Menu.setApplicationMenu(null)
+  Menu.setApplicationMenu(null)
 
   // Om vi skulle stängt ner föntrena men inte stängt av applikationen
   // säkerställer att vi bara har ETT fönster
@@ -94,5 +94,27 @@ ipcMain.handle('getById', (_, id) => {
  Här behöver vi ladda in alla kontakter,
  hämta den aktuella kontakten med hjälp av id på den vi skickade med
  uppdatera alla fölt
+ _c.firstName = contact.firstName
  skriva över alla kontakter i filen
  */
+ipcMain.handle('editContact', (_, updatedContact) => {
+   // hämtar alla kontakter och konverterar om till JS array
+   const contacts = JSON.parse(fs.readFileSync(DB_CONNECTION, 'utf-8'))
+
+  // letar rätt på den enskilda kontakten med hjälp av id
+  const oldContact = contacts.find(c => c.id === updatedContact.id)
+
+  //Uppdaterar alla fält i kontakten till det nya
+  oldContact.firstName = updatedContact.firstName
+  oldContact.lastName = updatedContact.lastName
+  oldContact.phoneNumber = updatedContact.phoneNumber
+  oldContact.email = updatedContact.email
+  oldContact.streetName = updatedContact.streetName
+  oldContact.postalCode = updatedContact.postalCode
+  oldContact.city = updatedContact.city
+
+    // Skriver över hela filen med den manipulerade contacts
+    fs.writeFileSync(DB_CONNECTION, JSON.stringify(contacts))
+
+    return true
+})

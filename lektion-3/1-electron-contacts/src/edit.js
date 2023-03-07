@@ -20,8 +20,20 @@ const renderContactInformation = () => {
 }
 
 
-document.querySelector('#editForm').addEventListener('submit', e => {
+document.querySelector('#editForm').addEventListener('submit', async (e) => {
   e.preventDefault()
 
-  //tbd kör en funktion från preload
+  const contact = {
+    id: id,
+    firstName: document.querySelector('#firstName').value,
+    lastName: document.querySelector('#lastName').value,
+    phoneNumber: document.querySelector('#phoneNumber').value,
+    email: document.querySelector('#email').value,
+    streetName: document.querySelector('#streetName').value,
+    postalCode: document.querySelector('#postalCode').value,
+    city: document.querySelector('#city').value,
+  }
+  await window.contacts.edit(contact)
+
+  window.location.replace('index.html')
 })
