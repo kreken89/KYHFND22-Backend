@@ -9,7 +9,5 @@ contextBridge.exposeInMainWorld('contacts', {
   add: (contact) => ipcRenderer.invoke('addContact', contact),
   delete: (id) => ipcRenderer.invoke('deleteContact', id),
   getById: (id) => ipcRenderer.invoke('getById', id)
+  //invoke editContact och skicka med den nya kontakten
 })
-
-
-

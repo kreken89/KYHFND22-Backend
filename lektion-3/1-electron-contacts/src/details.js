@@ -1,3 +1,5 @@
+
+// plockar ut id från url query detta sätter vi på rad 33 i renderer.js
 const id = new URLSearchParams(window.location.search).get('id')
 
 let contact = {}

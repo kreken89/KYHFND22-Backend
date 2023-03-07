@@ -6,9 +6,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1 class="headline">Contact List</h1>
-    <div class="wrapper">
-      <form id="addForm">
+    <h1 class="headline">Edit Contact</h1>
+    <a href="index.html" class="btn btn-secondary back-btn">Back</a>
+    <div class="card">
+      <form id="editForm">
         <input class="form-control" type="text" id="firstName" placeholder="Enter first name">
         <input class="form-control" type="text" id="lastName" placeholder="Enter last name">
         <input class="form-control" type="text" id="phoneNumber" placeholder="Enter phone number">
@@ -16,25 +17,10 @@
         <input class="form-control" type="text" id="streetName" placeholder="Enter street name">
         <input class="form-control" type="text" id="postalCode" placeholder="Enter postal code">
         <input class="form-control" type="text" id="city" placeholder="Enter city">
-        <button class="btn btn-primary">Add Contact</button>
+        <button class="btn btn-secondary">Save Changes</button>
+        <a href="index.html" class="btn btn-danger">Undo</a>
       </form>
-      <div id="output">
-
-        <div class="contact">
-          <div>
-            <p>Joakim Wahlström</p>
-            <p>0701234567</p>
-          </div>
-          <div>
-            <a href="details.html" class="btn btn-primary">Details</a>
-            <a href="edit.html" class="btn btn-secondary">Edit</a>
-            <button class="btn btn-danger">X</button>
-          </div>
-        </div>
-
-      </div>
     </div>
-
-    <script src="renderer.js"></script>
+    <script src="edit.js"></script>
 </body>
 </html>
