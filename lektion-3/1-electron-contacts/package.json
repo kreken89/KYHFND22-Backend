@@ -1,0 +1,17 @@
+{
+  "name": "1-electron-contacts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electronmon ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^23.1.2",
+    "electronmon": "^2.0.2"
+  }
+}
