@@ -3,8 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <h1>Contact List</h1>
+    <div class="wrapper">
+      <form id="addForm">
+        <input class="form-control" type="text" id="firstName" placeholder="Enter first name">
+        <input class="form-control" type="text" id="lastName" placeholder="Enter last name">
+        <input class="form-control" type="text" id="email" placeholder="Enter email address">
+        <input class="form-control" type="text" id="streetName" placeholder="Enter street name">
+        <input class="form-control" type="text" id="postalCode" placeholder="Enter postal code">
+        <input class="form-control" type="text" id="city" placeholder="Enter city">
+        <button class="btn btn-primary">Add Contact</button>
+      </form>
+      <div id="output">
+        <div class="contact">
+          <div>
+            <p>Joakim Wahlström</p>
+            <p>0701234567</p>
+          </div>
+          <div>
+            <button class="btn btn-primary">Deatils</button>
+            <button class="btn btn-secondary">Edit</button>
+            <button class="btn btn-danger">X</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="renderer.js"></script>
 </body>
 </html>

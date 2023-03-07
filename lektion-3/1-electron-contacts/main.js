@@ -20,7 +20,7 @@ const createMainWindow = () => {
 app.whenReady().then(() => {
   createMainWindow()
 
-  Menu.setApplicationMenu(null)
+  // Menu.setApplicationMenu(null)
 
   app.on('activate', () => {
     if(BrowserWindow.getAllWindows().length === 0) createMainWindow()

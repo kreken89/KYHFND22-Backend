@@ -1,0 +1,68 @@
+:root {
+  --clr-bg: lightslategray;
+  --clr-bg-light: hsl(210, 14%, 85%);
+  --clr-primary: #684a21;
+  --clr-secondary: darkslategray;
+  --clr-danger: firebrick;
+  --clr-hover: hsl(210, 14%, 70%);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--clr-bg);
+}
+.wrapper {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+  height: 90vh;
+}
+.form-control {
+  width: 100%;
+  padding: .3em;
+  margin-bottom: .6rem;
+  border-radius: .3em;
+  border: 1px solid darkslategray;
+}
+.form-control:focus {
+  outline: 2px solid darkslategray;
+}
+.btn {
+  padding: .4em 1.5em;
+  border: none;
+  border-radius: .3em;
+  cursor: pointer;
+}
+.btn-primary {
+  background-color: var(--clr-primary);
+  color: #fff;
+}
+.btn-secondary {
+  background-color: var(--clr-secondary);
+  color: #fff;
+}
+.btn-danger {
+  background-color: var(--clr-danger);
+  color: #fff;
+}
+#addForm {
+  flex: 2;
+}
+#output {
+  flex: 3;
+  background-color: var(--clr-bg-light);
+  overflow: auto;
+}
+.contact {
+  padding: .5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.contact:hover {
+  background-color: var(--clr-hover);
+}

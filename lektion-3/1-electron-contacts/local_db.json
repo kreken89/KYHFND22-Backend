@@ -1,0 +1,20 @@
+[
+  {
+    "id": "asdasf-asdd213-asdd23das-123dasc",
+    "firstName": "Joakim",
+    "lastName": "Wahlström",
+    "email": "joakim@domain.com",
+    "streetName": "gatan",
+    "postalCode": "74365",
+    "city": "Västerås"
+  },
+  {
+    "id": "asdasf-asdsa3-asddsasfas-asdf43a",
+    "firstName": "Hans",
+    "lastName": "Mattin-Lassei",
+    "email": "hans@domain.com",
+    "streetName": "vägen",
+    "postalCode": "12345",
+    "city": "Stockholm"
+  }
+]
