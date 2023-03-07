@@ -54,5 +54,21 @@ ipcMain.handle('addContact', (_, contact) => {
 })
 
 ipcMain.handle('deleteContact', (_, id) => {
-  
+  const contacts = JSON.parse(fs.readFileSync(DB_CONNECTION, 'utf-8'))
+
+  // hittar index platsen på den kontakten som vi har klickat på och tar bort den med .splice
+  const index = contacts.findIndex(contact => contact.id === id)
+  contacts.splice(index, 1)
+
+  // Skriver över hela filen med den manipulerade contacts
+  fs.writeFileSync(DB_CONNECTION, JSON.stringify(contacts))
+
+  return true
+})
+
+ipcMain.handle('getById', (_, id) => {
+  const contacts = JSON.parse(fs.readFileSync(DB_CONNECTION, 'utf-8'))
+
+  const contact = contacts.find(c => c.id === id)
+  return contact
 })

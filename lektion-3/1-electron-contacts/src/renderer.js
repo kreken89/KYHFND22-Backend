@@ -25,12 +25,18 @@ const createContactElement = (contact) => {
   const phoneNumber_p = createElement('p', '', contact.phoneNumber)
 
   const rightSide_div = createElement('div', 'd-flex')
-  const details_btn = createElement('button', 'btn btn-primary', 'Details')
+  const details_btn = createElement('a', 'btn btn-primary', 'Details')
+  details_btn.href = `details.html?id=${contact.id}`
   const edit_btn = createElement('button', 'btn btn-secondary', 'Edit')
   const delete_btn = createElement('button', 'btn btn-danger', 'X')
 
   delete_btn.addEventListener('click', async () => {
     const res = await window.contacts.delete(contact.id)
+
+    if(res) {
+      _contacts.splice(_contacts.findIndex(c => c.id === contact.id), 1)
+      contact_div.remove()
+    }
   })
 
   rightSide_div.append(details_btn, edit_btn, delete_btn)
@@ -57,6 +63,7 @@ document.querySelector('#addForm').addEventListener('submit', async (e) => {
     id: crypto.randomUUID(),
     firstName: document.querySelector('#firstName').value,
     lastName: document.querySelector('#lastName').value,
+    phoneNumber: document.querySelector('#phoneNumber').value,
     email: document.querySelector('#email').value,
     streetName: document.querySelector('#streetName').value,
     postalCode: document.querySelector('#postalCode').value,

@@ -7,7 +7,8 @@ const { contextBridge, ipcRenderer } = require('electron')
 contextBridge.exposeInMainWorld('contacts', {
   getAll: () => ipcRenderer.invoke('getAll'),
   add: (contact) => ipcRenderer.invoke('addContact', contact),
-  delete: (id) => ipcRenderer.invoke('deleteContact', id)
+  delete: (id) => ipcRenderer.invoke('deleteContact', id),
+  getById: (id) => ipcRenderer.invoke('getById', id)
 })
 
 
