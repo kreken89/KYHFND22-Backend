@@ -23,10 +23,19 @@ io.on('connection', socket => {
 
 
   // När en ny använader kopplar upp sig
-  socket.on('user', (data) => {
-    console.log(data + ' has joined the chatroom')
+  socket.on('user', (userName) => {
+    
+    // broadcast = skickar till alla ANDRA sockets än sin egen
+    socket.broadcast.emit('userConnection', `${userName} has joined the chat`)
   })
  
+
+  // när det kommer in ett nytt meddelande från en client
+  socket.on('message', message => {
+
+    //emittar till ALLA sockets, inklusive den som skickade meddelandet
+    io.sockets.emit('newMessage', message)
+  })
 
   
 })

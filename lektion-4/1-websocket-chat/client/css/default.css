@@ -15,6 +15,9 @@ body {
   padding-inline: 1rem;
   max-width: 700px;
 }
+.d-none {
+  display: none;
+}
 .card {
   margin: 3rem auto;
   background-color: #fff;
@@ -34,6 +37,7 @@ body {
 }
 .btn {
   text-decoration: none;
+  font-size: .9rem;
   text-transform: uppercase;
   border: none;
   padding: .7em 1.3em;
@@ -55,4 +59,19 @@ body {
 }
 .btn-primary:active {
   background-color: var(--clr-primary-200);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background-color: var(--clr-chat-bg);
+}
+::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 6px;
+  border: 3px solid var(--clr-chat-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #aaaaaa;
 }

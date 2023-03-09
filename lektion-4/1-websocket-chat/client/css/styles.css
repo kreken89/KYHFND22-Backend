@@ -44,3 +44,22 @@
 .right .single-message_name {
   display: none;
 }
+.chat-form {
+  border-top: none
+  /* padding: 1rem 2rem 0 2rem; */
+}
+.inline-feedback {
+  color: #6d6d6d;
+}
+#feedback {
+  color: #6d6d6d;
+  border-bottom: 2px solid var(--clr-border);
+  background-color: var(--clr-chat-bg);
+}
+.input-group {
+  margin: 1.5rem 2rem 0 2rem;
+}
+
+.chat-form:has(#feedback.d-none) {
+  border-top: 2px solid var(--clr-border);
+}
