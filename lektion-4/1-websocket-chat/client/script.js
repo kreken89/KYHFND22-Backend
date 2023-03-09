@@ -30,6 +30,19 @@ socket.on('userConnection', (data) => {
 socket.on('typing', data => {
   feedback.classList.remove('d-none')
   feedback.innerText = `${data} is typing a message...`
+
+  // Om personen slutar skriva så tar vi bort statusen efter 5 sekunder
+  setTimeout(() => {
+    feedback.classList.add('d-none')
+    feedback.innerText = ''
+  }, 5000)
+})
+
+
+// någon slutar skriva ett meddelande
+socket.on('stoppedTyping', () => {
+  feedback.classList.add('d-none')
+  feedback.innerText = ''
 })
 
 
@@ -39,9 +52,17 @@ socket.on('newMessage', data => {
   const message_div = createElement('div', 'single-message')
   if(data.id === socket.id) message_div.classList.add('right')
   const messageName_p = createElement('p', 'single-message_name', data.userName)
+
+  const time_p = createElement('p', 'timestamp', moment(data.createdAt).fromNow())
+
+  setInterval(() => {
+    time_p.innerText = moment(data.createdAt).fromNow()
+  }, 60000)
+
+
   const msg_p = createElement('p', 'single-message_msg', data.message)
 
-  message_div.append(messageName_p, msg_p)
+  message_div.append(messageName_p, time_p, msg_p,)
   messages.append(message_div)
 
   feedback.classList.add('d-none')
@@ -76,8 +97,12 @@ chatForm.addEventListener('submit', e => {
 
 
 // när en användare skriver i inputen
-chatMessage.addEventListener('keypress', () => {
-  socket.emit('typing', userName)
+chatMessage.addEventListener('keyup', () => {
+  if(chatMessage.value.length > 0) {
+    socket.emit('typing', userName)
+  } else {
+    socket.emit('stoppedTyping')
+  }
 })
 
 

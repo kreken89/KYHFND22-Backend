@@ -35,9 +35,10 @@ io.on('connection', socket => {
   // när det kommer in ett nytt meddelande från en client
   socket.on('message', message => {
     //emittar till ALLA sockets, inklusive den som skickade meddelandet
-    const date = new Date()
-    message.createdAt = date.toLocaleString()
-    console.log(message.createdAt)
+
+    // sätter en timestamp på meddelandet
+    message.createdAt = Date.now()
+
     io.sockets.emit('newMessage', message)
   })
 
@@ -45,6 +46,11 @@ io.on('connection', socket => {
   socket.on('typing', userName => {
     // skicka till alla andra att personen skriver
     socket.broadcast.emit('typing', userName)
+  })
+
+  // En användare slutar skriva
+  socket.on('stoppedTyping', () => {
+    socket.broadcast.emit('stoppedTyping')
   })
 
   // När en socket tappar kontakten

@@ -30,6 +30,12 @@
   max-width: 70%;
   margin: 1rem 0;
   border-radius: var(--border-radius);
+  position: relative;
+}
+.timestamp {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 .single-message_name {
   font-weight: bold;
@@ -42,7 +48,8 @@
   color: #fff;
 }
 .right .single-message_name {
-  display: none;
+  /* display: none; */
+  visibility: hidden;
 }
 .chat-form {
   border-top: none
