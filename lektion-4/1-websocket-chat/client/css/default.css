@@ -20,7 +20,7 @@ body {
   background-color: #fff;
   padding: 1rem 3rem 2rem 3rem;
   border-radius: var(--border-radius);
-  text-align: center;
+  /* text-align: center; */
   box-shadow: var(--shadow);
 }
 .form-control {
@@ -41,6 +41,10 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: background 150ms ease-out;
+}
+.btn-block {
+  display: block;
+  width: 100%;
 }
 .btn-primary {
   background-color: var(--clr-primary);

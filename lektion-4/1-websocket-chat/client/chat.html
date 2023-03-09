@@ -4,12 +4,48 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>ChatSocket | chat</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
+  <div class="container">
 
-  
+    <div class="card chat-card">
+
+      <header class="chat-header">
+        <p id="me">Joakim</p>
+        <a href="index.html" class="btn btn-primary">Logout</a>
+      </header>
+
+      <div class="chat">
+
+        <div class="chat-window">
+          <div class="messages">
+
+            <div class="single-message">
+              <p class="single-message_name">Hans</p>
+              <p class="single-message_msg">Lorem ipsum dolor sit.</p>
+            </div>
+            <div class="single-message right">
+              <p class="single-message_name">Hans</p>
+              <p class="single-message_msg">Lorem ipsum dolor sit.</p>
+            </div>
+
+
+          </div>
+        </div>
+
+        <form id="chatForm" class="chat-form">
+          <input type="text" class="form-control">
+          <button id="send" class="btn btn-primary btn-block">Send</button>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+
   <script src="/socket.io/socket.io.js"></script>
   <script src="script.js"></script>
 </body>

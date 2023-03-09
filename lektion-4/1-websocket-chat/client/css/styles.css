@@ -1,0 +1,46 @@
+@import "./default.css";
+
+.chat-card {
+  padding: 1rem 0 2rem 0;
+}
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--clr-border);
+  padding: 0 2rem 1rem 2rem;
+}
+.chat {
+  height: 80dvh;
+  display: flex;
+  flex-direction: column;
+}
+.chat-window {
+  flex: 1;
+  background-color: var(--clr-chat-bg);
+  overflow-y: scroll;
+}
+.messages {
+  padding: 0 2rem;
+}
+
+.single-message {
+  background-color: #fff;
+  padding: 1rem;
+  max-width: 70%;
+  margin: 1rem 0;
+  border-radius: var(--border-radius);
+}
+.single-message_name {
+  font-weight: bold;
+  color: var(--clr-primary);
+  margin-bottom: .3rem;
+}
+.right {
+  margin-left: auto;
+  background-color: var(--clr-primary);
+  color: #fff;
+}
+.right .single-message_name {
+  display: none;
+}
