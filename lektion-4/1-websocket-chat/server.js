@@ -8,7 +8,7 @@ const server = http.createServer(app)
 
 app.use(express.static(path.join(__dirname, 'client')))
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 6000;
 
 server.listen(PORT, () => console.log('Server running on http://localhost:' + PORT))
 
@@ -27,4 +27,6 @@ io.on('connection', socket => {
     console.log(data + ' has joined the chatroom')
   })
  
+
+  
 })
