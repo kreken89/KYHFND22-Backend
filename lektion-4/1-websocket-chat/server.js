@@ -3,6 +3,8 @@ const path = require('path');
 const http = require('http');
 const socket = require('socket.io')
 
+const { userConnect, userDisconnect } = require('./users');
+
 const app = express();
 const server = http.createServer(app)
 
@@ -19,12 +21,12 @@ const io = socket(server)
 // När en client kopplar upp sig. Har då tillgång till den klientens specifika websocket
 io.on('connection', socket => {
   // Här inne är vi uppkopplade
-  console.log('New user connected', socket.id)
+  // console.log('New user connected', socket.id)
 
 
   // När en ny använader kopplar upp sig
   socket.on('user', (userName) => {
-    
+    userConnect(socket.id, userName)
     // broadcast = skickar till alla ANDRA sockets än sin egen
     socket.broadcast.emit('userConnection', `${userName} has joined the chat`)
   })
@@ -32,10 +34,25 @@ io.on('connection', socket => {
 
   // när det kommer in ett nytt meddelande från en client
   socket.on('message', message => {
-
     //emittar till ALLA sockets, inklusive den som skickade meddelandet
+    const date = new Date()
+    message.createdAt = date.toLocaleString()
+    console.log(message.createdAt)
     io.sockets.emit('newMessage', message)
   })
 
+  // en användare skriver
+  socket.on('typing', userName => {
+    // skicka till alla andra att personen skriver
+    socket.broadcast.emit('typing', userName)
+  })
+
+  // När en socket tappar kontakten
+  socket.on('disconnect', () => {
+    // io.sockets.emit('userConnection', `a user has left the chat`)
+
+    const user = userDisconnect(socket.id)
+    io.sockets.emit('userConnection', `${user.userName} has left the chat`)
+  })
   
 })

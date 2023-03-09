@@ -2,6 +2,8 @@ const socket = io();
 
 const chatForm = document.querySelector('#chatForm');
 const chatMessage = document.querySelector('#chatMessage');
+const feedback = document.querySelector('#feedback');
+const chatWindow = document.querySelector('.chat-window');
 
 const messages = document.querySelector('.messages');
 
@@ -21,6 +23,13 @@ socket.on('userConnection', (data) => {
   // messages.innerHTML += `<p class="inline-feedback">${data}</p>` // gör vi såhär är vi känsliga för XSS
 
   messages.append(createElement('p', 'inline-feedback', data))
+  chatWindow.scrollTop = chatWindow.scrollHeight
+})
+
+// någon skriver ett meddelande
+socket.on('typing', data => {
+  feedback.classList.remove('d-none')
+  feedback.innerText = `${data} is typing a message...`
 })
 
 
@@ -35,6 +44,10 @@ socket.on('newMessage', data => {
   message_div.append(messageName_p, msg_p)
   messages.append(message_div)
 
+  feedback.classList.add('d-none')
+  feedback.innerText = ''
+
+  chatWindow.scrollTop = chatWindow.scrollHeight
 })
 
 
@@ -62,8 +75,10 @@ chatForm.addEventListener('submit', e => {
 })
 
 
-
-
+// när en användare skriver i inputen
+chatMessage.addEventListener('keypress', () => {
+  socket.emit('typing', userName)
+})
 
 
 

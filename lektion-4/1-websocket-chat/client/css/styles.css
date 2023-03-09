@@ -55,6 +55,7 @@
   color: #6d6d6d;
   border-bottom: 2px solid var(--clr-border);
   background-color: var(--clr-chat-bg);
+  padding-left: 1rem;
 }
 .input-group {
   margin: 1.5rem 2rem 0 2rem;
