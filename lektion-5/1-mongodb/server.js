@@ -30,6 +30,7 @@ const User = mongoose.model('user', userSchema)
 
 
 // Om man gör en post mot /api/users
+// Spara in en ny användare
 app.post('/api/users', (req, res) => {
 
   const { firstName, lastName } = req.body
@@ -42,4 +43,24 @@ app.post('/api/users', (req, res) => {
       // Gör nått med error
     })
 
+})
+
+
+// Hämta en lista på alla användare
+app.get('/api/users', (req, res) => {
+  User.find()
+    .then(data => {
+      res.status(200).json(data)
+    })
+})
+
+
+
+// Hämta en specifik användare
+app.get('/api/users/:id', (req, res) => {
+  // const id = req.params.id
+  User.findById(req.params.id)
+    .then(data => {
+      res.status(200).json(data)
+    })
 })
