@@ -25,7 +25,7 @@ const userSchema = mongoose.Schema({
   lastName: { type: String, default: 'Andersson'}
 })
 
-const User = mongoose.model('user', userSchema)
+
 
 
 
