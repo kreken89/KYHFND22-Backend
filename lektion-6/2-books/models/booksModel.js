@@ -9,7 +9,8 @@ exports.getAllBooks = (req, res) => {
 exports.getBookById = (req, res) => {
   Book.findById(req.params.id)
     .populate('author')
-    .exec((err, data) => {
+    .exec()
+    .then(data => {
       res.status(200).json(data)
     })
 }
