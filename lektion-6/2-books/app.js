@@ -7,5 +7,6 @@ app.use(express.urlencoded({ extended: false }));
 
 // Controllers
 app.use('/api/authors', require('./controllers/authorsController'));
+app.use('/api/books', require('./controllers/booksController'))
 
 module.exports = app;
