@@ -5,12 +5,13 @@ const todoModel = require('../models/todoModel')
 
 
 //Create
-router.post('/', todoModel.createNewTodo)
+router.post('/', todoModel.createNewTodo);
 //Read
-
-//Update
-
+router.get('/', todoModel.getTodos);
+//Update PUT - PATCH
+router.put('/:id', todoModel.updateTodo);
 //Delete
+router.delete('/:id', todoModel.deleteTodo);
 
 module.exports = router;
 

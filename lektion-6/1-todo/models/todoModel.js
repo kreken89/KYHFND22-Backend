@@ -26,3 +26,67 @@ exports.createNewTodo = (req, res) => {
     })
 
 }
+
+/*
+  GET /api/todos
+  Get a list of all the todos
+*/
+exports.getTodos = (req, res) => {
+
+  Todo.find()
+    .then(todos => {
+      res.status(200).json(todos)
+    })
+    .catch(() => {
+      res.status(500).json({
+        message: 'Could not get the todos'
+      })
+    })
+}
+
+exports.updateTodo = (req, res) => {
+
+  // const update = {
+  //   title: req.body.title,
+  //   completed: req.body.completed
+  // }
+
+  Todo.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then(todo => {
+      if(!todo) {
+        res.status(404).json({ message: 'could not find that todo'})
+        return
+      }
+
+      res.status(200).json(todo)
+    })
+    .catch(() => {
+      res.status(500).json({
+        message: 'Someting went wrong when updating the todo'
+      })
+    })
+
+}
+
+
+/*
+  DELETE /api/todo/:id
+*/
+exports.deleteTodo = (req, res) => {
+
+  Todo.findByIdAndDelete(req.params.id)
+    .then(todo => {
+      if(!todo) {
+        res.status(404).json({ message: 'could not find that todo'})
+        return
+      }
+
+      res.status(200).json({ id: todo._id })
+    })
+    .catch(() => {
+      res.status(500).json({
+        message: 'Someting went wrong when deleteing the todo'
+      })
+    })
+
+}
