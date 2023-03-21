@@ -5,6 +5,7 @@ const dishModel = require('../models/dishModel')
 router.post('/', dishModel.createNewDish)
 
 // READ
+router.get('/', dishModel.getAllDishesAsync)
 
 // UPDATE
 

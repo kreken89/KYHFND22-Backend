@@ -22,6 +22,27 @@ exports.createNewDish = (req, res) => {
       })
       return
     })
+}
 
+exports.getAllDishes = (req, res) => {
+  Dish.find()
+    .then(dishes => {
+      res.status(200).json(dishes)
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: 'Something went wrong when getting the dishes'
+      })
+    })
+}
+exports.getAllDishesAsync = async (req, res) => {
+  try{
+    const dishes = await Dish.find()
+    res.status(200).json(dishes)
 
+  } catch(err) {
+    res.status(500).json({
+      message: 'Something went wrong when getting the dishes'
+    })
+  }
 }
