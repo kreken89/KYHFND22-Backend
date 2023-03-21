@@ -18,6 +18,7 @@ const applicationSchema = mongoose.Schema({
   usage: {
     type: [usageSchema]
   }
-})
+  
+}, { timestamps: true })
 
 module.exports = mongoose.model('Application', applicationSchema)

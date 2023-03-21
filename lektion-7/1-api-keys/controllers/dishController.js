@@ -1,17 +1,18 @@
 const router = require('express').Router();
 const dishModel = require('../models/dishModel')
+const { validateApiKey } = require('../middleware/auth')
 
 // CREATE
-router.post('/', dishModel.createNewDish)
+router.post('/', validateApiKey, dishModel.createNewDish)
 
 // READ
-router.get('/', dishModel.getAllDishesAsync)
-router.get('/random', dishModel.getRandomDishes)
+router.get('/', validateApiKey, dishModel.getAllDishesAsync)
+router.get('/random', validateApiKey, dishModel.getRandomDishes)
 
 // UPDATE
-router.put('/:id', dishModel.updateDish)
+router.put('/:id', validateApiKey, dishModel.updateDish)
 
 // DELETE
-router.delete('/:id', dishModel.deleteDish)
+router.delete('/:id', validateApiKey, dishModel.deleteDish)
 
 module.exports = router;

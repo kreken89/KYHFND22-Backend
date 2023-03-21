@@ -15,6 +15,9 @@ const cors = require('cors')
 
 app.use(cors())
 
+const path = require('path')
+app.use(express.static(path.join(__dirname, 'frontend')))
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
