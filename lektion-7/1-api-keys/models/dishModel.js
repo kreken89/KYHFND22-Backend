@@ -1,6 +1,5 @@
 const Dish = require('../schemas/dishSchema')
 
-
 exports.createNewDish = (req, res) => {
 
   const { name } = req.body;
