@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 9999;
 const serverURI = `http://localhost:${PORT}`
 const mongoURI = process.env.MONGO_URI
 
-app.listen(() => console.log('Server running on: ' + serverURI))
+app.listen(PORT, () => console.log('Server running on: ' + serverURI))
 
 const connectToDB = async () => {
   try {
