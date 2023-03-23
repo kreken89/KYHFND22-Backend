@@ -39,7 +39,55 @@ exports.registerUser = async (req, res) => {
         token: auth.generateToken(user)
       })
     })
-
-
   })
+}
+
+
+exports.loginUserWithEmailAndPassword = (req, res) => {
+  const { email, password } = req.body;
+
+  if(!email || !password) {
+    return res.status(400).json({
+      message: 'You need to enter all the fields'
+    })
+  }
+
+  User.findOne({ email })
+  .then(user => {
+
+    if(!user) {
+      return res.status(401).json({
+        message: 'Incorrect credentials'
+      })
+    }
+
+    bcrypt.compare(password, user.passwordHash, (err, result) => {
+      if(err) {
+        return res.status(500).json({
+          message: 'Something went wrong when decrypting the password'
+        })
+      }
+
+      if(!result) {
+        return res.status(401).json({
+          message: 'Incorrect credentials'
+        })
+      }
+
+      res.status(200).json({ token: auth.generateToken(user) })
+
+    })
+  })
+
+}
+
+
+exports.getUserData = (req, res) => {
+  const { _id, displayName } = req.userData;
+
+  User.findById(_id)
+    .then(user => {
+      res.status(200).json(user)
+    })
+  
 }

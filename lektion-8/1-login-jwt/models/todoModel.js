@@ -3,7 +3,7 @@ const Todo = require('../schemas/todoSchema')
 exports.getTodos = async (req, res) => {
 
   try {
-    const todos = await Todo.find()
+    const todos = await Todo.find({ user: req.userData._id })
     res.status(200).json(todos)
 
   } catch (err) {
@@ -28,7 +28,8 @@ exports.createNewTodo = async (req, res) => {
   try {
     
     const todo = await Todo.create({
-      title
+      title,
+      user: req.userData._id
     })
 
     res.status(201).json(todo)
