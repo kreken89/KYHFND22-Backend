@@ -1,5 +1,6 @@
 const User = require('../schemas/userSchema');
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const auth = require('../authentication/auth');
 
 exports.registerUser = async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
@@ -32,6 +33,11 @@ exports.registerUser = async (req, res) => {
       lastName,
       email,
       passwordHash: hash
+    })
+    .then(user => {
+      res.status(201).json({
+        token: auth.generateToken(user)
+      })
     })
 
 
