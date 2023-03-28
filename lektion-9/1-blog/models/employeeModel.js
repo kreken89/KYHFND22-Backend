@@ -1,6 +1,7 @@
 const Employee = require('../schemas/employeeSchema')
 const bcrypt = require('bcryptjs')
-const auth = require('../authentication/auth')
+const auth = require('../authentication/auth');
+const { default: mongoose } = require('mongoose');
 
 exports.addEmployee = async (req, res) => {
   const { firstName, lastName, password } = req.body;
@@ -58,4 +59,50 @@ exports.login = async (req, res) => {
    }
 
    res.status(200).json(auth.generateToken(employee))
+}
+
+
+
+exports.fireEmployee = async (req, res) => {
+
+  const employee = await Employee.findOneAndDelete({ _id: req.params.id })
+
+  if(!employee) {
+    return res.status(404).json({
+      message: 'Could not find the employee'
+    })
+  }
+
+  res.status(204).json()
+
+}
+
+
+exports.updateEmployee = async (req, res) => {
+
+  // if(mongoose.Types.ObjectId.isValid(req.params.id))
+
+  // const employee = await Employee.findOneAndUpdate({ _id: req.params.id }, {}, { new: true })
+
+  const employee = await Employee.findOne({ _id: req.params.id })
+  if(!employee) {
+    return res.status(404).json({
+      message: 'Could not find the employee'
+    })
+  }
+
+  employee.firstName = req.body.firstName || employee.firstName
+  employee.lastName = req.body.lastName || employee.lastName
+
+  const count = await Employee.count({ firstName: employee.firstName, lastName: employee.lastName })
+  let suffix = ''
+  if(count > 0) {
+    suffix = count
+  }
+  employee.email = employee.firstName + '.' + employee.lastName + suffix + '@company.se'
+
+  const updatedEmployee = await employee.save()
+
+  res.status(200).json(updatedEmployee)
+
 }
