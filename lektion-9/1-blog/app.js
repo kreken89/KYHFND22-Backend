@@ -8,5 +8,6 @@ app.use(express.json())
 
 
 app.use('/api/employees', require('./controllers/employeeController'))
+app.use('/api/blog', require('./controllers/postController'))
 
 module.exports = app;
