@@ -1,11 +1,11 @@
 const router = require('express').Router();
 const { addEmployee, login, fireEmployee, updateEmployee } = require('../models/employeeModel')
-const { verifyToken } = require('../authentication/auth')
+const { verifyToken, checkAdmin } = require('../authentication/auth')
 
-router.post('/add', addEmployee)
+router.post('/add', verifyToken, checkAdmin, addEmployee)
 router.post('/login', login)
 
-router.delete('/:id', verifyToken, fireEmployee)
-router.put('/:id', verifyToken, updateEmployee)
+router.delete('/:id', verifyToken, checkAdmin, fireEmployee)
+router.put('/:id', verifyToken, checkAdmin, updateEmployee)
 
 module.exports = router;

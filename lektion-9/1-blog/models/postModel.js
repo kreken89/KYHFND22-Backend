@@ -59,3 +59,28 @@ exports.getPostsByAuthor = async (req, res) => {
   res.status(200).json(posts)
 
 }
+
+
+
+exports.likePost = async (req, res) => {
+  const post = await Post.findById(req.params.id)
+  post.likes++
+  await post.save()
+  res.status(200).json(post)
+}
+
+exports.updatePost = async (req, res) => {
+  const post = await Post.findByIdAndUpdate(req.params.id, req.body, { new: true })
+  if(!post) {
+    return res.status(404).json({ message: 'Could not find that post' })
+  }
+  res.status(200).json(post)
+}
+
+exports.deletePost = async (req, res) => {
+  const post = await Post.findByIdAndDelete(req.params.id)
+  if(!post) {
+    return res.status(404).json({ message: 'Could not find that post' })
+  }
+  res.status(200).json(post)
+}
