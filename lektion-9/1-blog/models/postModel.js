@@ -17,3 +17,45 @@ exports.createNewPost = async (req, res) => {
   res.status(201).json(post)
 
 }
+
+
+exports.getPosts = async (req, res) => {
+  try {  
+
+    const { tag } = req.query;
+
+    // let query;
+    // if(tag) {
+    //   query = { tags: tag }
+    // } else {
+    //   query = {}
+    // }
+
+    const query = tag ? { tags: tag } : {}
+
+    const posts = await Post.find(query).populate('author')
+    res.status(200).json(posts)
+  } catch (err) {
+    res.status(500).json({ message: 'Something went wrong when fetching the posts' })
+  }
+}
+
+exports.getPostById = async (req, res) => {
+
+  const post = await Post.findById(req.params.id).populate('author')
+
+  if(!post) {
+    return res.status(404).json({ message: 'Could not fint that post' })
+  }
+
+  res.status(200).json(post)
+
+}
+
+exports.getPostsByAuthor = async (req, res) => {
+
+  const posts = await Post.find({ author: req.params.id })
+
+  res.status(200).json(posts)
+
+}
