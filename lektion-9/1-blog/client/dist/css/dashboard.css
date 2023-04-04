@@ -20,6 +20,7 @@
 }
 .img-container {
   flex: 1;
+  height: 70px;
 }
 .right {
   flex: 5;
@@ -43,6 +44,10 @@
 }
 .likes {
   position: absolute;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: .5rem;
+  right: .5rem;
+}
+.body {
+  margin-top: 1rem;
+  padding-right: 4rem;
 }
