@@ -12,6 +12,7 @@
   border: 1px solid #c4c4c4;
   padding: .5rem;
   position: relative;
+  color: #000;
 }
 .post img {
   width: 100%;

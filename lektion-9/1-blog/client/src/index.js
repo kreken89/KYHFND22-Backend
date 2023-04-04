@@ -32,7 +32,7 @@ const getPosts = async () => {
   posts.forEach(post => {
 
     document.querySelector('#output').insertAdjacentHTML('beforeend', `
-    <div class="post">
+    <a href="edit.html?id=${post._id}" class="post">
         <div class="img-container">
           <img src="${post.imgURL}" alt="${post.title}">
         </div>
@@ -50,7 +50,7 @@ const getPosts = async () => {
             <p class="likes">likes: <span>${post.likes}</span></p>
           </div>
         </div> 
-      </div>
+      </a>
     `)
     const ul = document.querySelector('#tags' + post._id)
     post.tags.forEach(tag => {
@@ -64,3 +64,9 @@ const getPosts = async () => {
 
 }
 getPosts()
+
+
+document.querySelector('#logoutBtn').addEventListener('click', () => {
+  localStorage.removeItem('token')
+  location.replace('login.html')
+})
