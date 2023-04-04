@@ -1,0 +1,13 @@
+@import './default.css';
+
+.card {
+  min-width: 700px;
+}
+#createForm .btn {
+  margin-bottom: 1rem;
+}
+
+textarea.form-control {
+  height: 200px;
+  resize: none;
+}

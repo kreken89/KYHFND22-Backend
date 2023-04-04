@@ -1,11 +1,5 @@
 @import './default.css';
 
-.wrapper {
-  height: 100dvh;
-  display: grid;
-  place-items: center;
-}
-
 #loginForm {
   min-width: 400px;
 }
