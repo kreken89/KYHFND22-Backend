@@ -97,3 +97,32 @@ a {
   gap: 1rem;
   list-style: none;
 }
+
+.justify-end {
+  display: flex;
+  justify-content: end;
+}
+.space-between {
+  display: flex;
+  justify-content: space-around;
+}
+
+.fa-trash {
+  color: firebrick;
+}
+
+
+.modal-bg {
+  position: absolute;
+  inset: 0;
+  background-color: #0000002e;
+}
+.modal-bg .modal.card {
+  min-width: 200px;
+  max-width: 400px;
+  margin-inline: auto;
+  margin-top: 4rem;
+}
+.d-none {
+  display: none;
+}

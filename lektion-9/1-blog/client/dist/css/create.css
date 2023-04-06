@@ -3,7 +3,8 @@
 .card {
   min-width: 700px;
 }
-#createForm .btn {
+#createForm .btn,
+#editForm .btn {
   margin-bottom: 1rem;
 }
 

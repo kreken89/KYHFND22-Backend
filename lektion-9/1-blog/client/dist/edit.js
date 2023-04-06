@@ -1,5 +1,7 @@
 const id = new URLSearchParams(window.location.search).get('id')
 const editForm = document.querySelector('#editForm')
+const deleteBtn = document.querySelector('#deleteBtn');
+const modal = document.querySelector('#modal');
 
 const getPost = async () => {
   const res = await fetch('http://localhost:7778/api/blog/' + id)
