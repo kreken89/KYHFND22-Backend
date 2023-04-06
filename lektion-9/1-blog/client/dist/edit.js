@@ -3,6 +3,26 @@ const editForm = document.querySelector('#editForm')
 const deleteBtn = document.querySelector('#deleteBtn');
 const modal = document.querySelector('#modal');
 
+const handleDelete = async (e) => {
+  const token = localStorage.getItem('token')
+
+  const res = await fetch('http://localhost:7778/api/blog/' + id, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  })
+
+  console.log(res)
+
+  if(res.status != 200) {
+    modal.querySelector('#modal-error').innerText = 'Någonting gick fel'
+    return
+  }
+  
+  location.assign('index.html')
+}
+
 const getPost = async () => {
   const res = await fetch('http://localhost:7778/api/blog/' + id)
   const data = await res.json();
@@ -46,3 +66,24 @@ editForm.addEventListener('submit', async (e) => {
   
   location.assign('index.html')
 })
+
+
+deleteBtn.addEventListener('click', () => {
+  modal.classList.remove('d-none')
+})
+
+modal.addEventListener('click', e => {
+  if(e.target === e.currentTarget) {
+    modal.classList.add('d-none')
+  }
+})
+
+
+modal.querySelector('#nBtn').addEventListener('click', () => {
+  modal.classList.add('d-none')
+})
+
+modal.querySelector('#yBtn').addEventListener('click', handleDelete)
+
+
+

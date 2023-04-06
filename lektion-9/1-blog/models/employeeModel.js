@@ -3,6 +3,17 @@ const bcrypt = require('bcryptjs')
 const auth = require('../authentication/auth');
 const { default: mongoose } = require('mongoose');
 
+exports.getAllEmployees = async (req, res) => {
+  let employees = await Employee.find()
+
+  employees = employees.map(employee => {
+    return { firstName: employee.firstName, lastName: employee.lastName, email: employee.email }
+  })
+
+  res.status(200).json(employees)
+}
+
+
 exports.addEmployee = async (req, res) => {
   const { firstName, lastName, password } = req.body;
 
