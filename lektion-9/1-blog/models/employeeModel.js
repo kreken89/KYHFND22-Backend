@@ -7,7 +7,7 @@ exports.getAllEmployees = async (req, res) => {
   let employees = await Employee.find()
 
   employees = employees.map(employee => {
-    return { firstName: employee.firstName, lastName: employee.lastName, email: employee.email }
+    return { _id: employee._id, firstName: employee.firstName, lastName: employee.lastName, email: employee.email }
   })
 
   res.status(200).json(employees)

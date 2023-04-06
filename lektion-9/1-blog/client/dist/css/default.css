@@ -64,6 +64,9 @@ a {
   display: block;
   width: 100%;
 }
+.btn-sm {
+  padding: .5em;
+}
 .btn-primary {
   background-color: darkslategray;
   color: #fff;
@@ -125,4 +128,9 @@ a {
 }
 .d-none {
   display: none;
+}
+
+
+form .btn {
+  margin-bottom: 1rem;
 }

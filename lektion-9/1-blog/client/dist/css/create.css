@@ -3,10 +3,6 @@
 .card {
   min-width: 700px;
 }
-#createForm .btn,
-#editForm .btn {
-  margin-bottom: 1rem;
-}
 
 textarea.form-control {
   height: 200px;
