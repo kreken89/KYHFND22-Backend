@@ -32,5 +32,7 @@ exports.checkAdmin = async (req, res, next) => {
     })
   }
 
+  // req.userAdmin = true
+
   next()
 }

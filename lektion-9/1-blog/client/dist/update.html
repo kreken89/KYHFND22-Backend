@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Employee</title>
+  <link rel="stylesheet" href="css/update.css">
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="card">
+      <h1 class="text-center my-1">Update Employee</h1>
+      <form id="updateForm">
+        <div class="input-group">
+          <label for="firstName">First Name</label>
+          <input type="text" name="firstName" id="firstName" class="form-control">
+          <small class="form-error error"></small>
+        </div>
+        <div class="input-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" name="lastName" id="lastName" class="form-control">
+          <small class="form-error error"></small>
+        </div>
+      
+        <p id="error" class="error"></p>
+
+        <button class="btn btn-block btn-primary">Update</button>
+        <a href="employees.html" class="btn btn-block btn-primary">Back</a>
+
+      </form>
+    </div>
+  </div>
+  
+
+  <script src="js/update.js"></script>
+</body>
+</html>

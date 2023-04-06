@@ -13,6 +13,16 @@ exports.getAllEmployees = async (req, res) => {
   res.status(200).json(employees)
 }
 
+exports.getById = async (req, res) => {
+  const employee = await Employee.findById(req.params.id)
+
+  if(!employee) {
+    return res.status(404).json({ message: 'could not find any employee'})
+  }
+
+  res.status(200).json(employee)
+}
+
 
 exports.addEmployee = async (req, res) => {
   const { firstName, lastName, password } = req.body;

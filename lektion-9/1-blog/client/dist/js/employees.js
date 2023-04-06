@@ -1,4 +1,5 @@
 const output = document.querySelector('#output')
+const modal = document.querySelector('#modal');
 
 const getEmployees = async () => {
   const res = await fetch('http://localhost:7778/api/employees', {
@@ -22,11 +23,13 @@ const getEmployees = async () => {
 
 getEmployees()
 
+let activeId = null;
 
 const createEmployeeElement = (employee) => {
 
   const employeeDiv = document.createElement('div')
   employeeDiv.className = 'employee'
+  employeeDiv.id = 'emp'+employee._id
 
   const nameP = document.createElement('p')
   nameP.innerText = employee.firstName + ' ' + employee.lastName
@@ -53,16 +56,44 @@ const createEmployeeElement = (employee) => {
   employeeDiv.append(nameP, buttonsDiv)
 
 
-  editBtn.addEventListener('click', handleEdit)
-  deleteBtn.addEventListener('click', (e) => handleDelete(employee._id))
+  editBtn.addEventListener('click', () => handleEdit(employee._id))
+  deleteBtn.addEventListener('click', (e) => {
+    modal.classList.remove('d-none')
+    activeId = employee._id
+  })
 
   return employeeDiv
 }
 
+const handleEdit = (id) => {
+  location.assign('update.html?id='+id)
+}
+const handleDelete = async (activeId) => {
+  const res = await fetch('http://localhost:7778/api/employees/' + activeId, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    }
+  })
 
-const handleEdit = () => {
-  console.log('edit')
+
+  if(res.status != 204) {
+    modal.querySelector('#modal-error').innerText = 'Something went wrong'
+    return
+  }
+
+  modal.classList.add('d-none')
+  document.querySelector('#emp' + activeId).remove()
 }
-const handleDelete = (id) => {
-  console.log('delete ' + id)
-}
+
+modal.addEventListener('click', e => {
+  if(e.target === e.currentTarget) {
+    modal.classList.add('d-none')
+  }
+})
+
+modal.querySelector('#nBtn').addEventListener('click', () => {
+  modal.classList.add('d-none')
+})
+
+modal.querySelector('#yBtn').addEventListener('click', () => handleDelete(activeId))

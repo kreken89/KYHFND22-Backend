@@ -1,8 +1,9 @@
 const router = require('express').Router();
-const { addEmployee, login, fireEmployee, updateEmployee, getAllEmployees } = require('../models/employeeModel')
+const { addEmployee, login, fireEmployee, updateEmployee, getAllEmployees, getById } = require('../models/employeeModel')
 const { verifyToken, checkAdmin } = require('../authentication/auth')
 
 router.get('/', verifyToken, checkAdmin, getAllEmployees)
+router.get('/:id', verifyToken, checkAdmin, getById)
 
 router.post('/add', verifyToken, checkAdmin, addEmployee)
 router.post('/login', login)
