@@ -4,6 +4,7 @@ const verifyToken = () => {
   try {
     const token = localStorage.getItem('token')
     const decoded = jwt_decode(token);
+    console.log(decoded)
 
     const now = + Date.now().toString().slice(0, 10)
 
@@ -14,6 +15,8 @@ const verifyToken = () => {
       throw new Error('token expired')
     } else {
       console.log('token valid')
+      if(decoded.admin)
+        document.querySelector('#emp-link').classList.remove('d-none')
     }
 
 

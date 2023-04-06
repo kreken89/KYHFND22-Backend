@@ -32,7 +32,9 @@ const createEmployeeElement = (employee) => {
   employeeDiv.id = 'emp'+employee._id
 
   const nameP = document.createElement('p')
-  nameP.innerText = employee.firstName + ' ' + employee.lastName
+  nameP.innerText = employee.admin
+  ? employee.firstName + ' ' + employee.lastName + ' (A)'
+  : employee.firstName + ' ' + employee.lastName
 
   const buttonsDiv = document.createElement('div')
 

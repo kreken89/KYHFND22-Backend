@@ -1,5 +1,6 @@
 const id = new URLSearchParams(window.location.search).get('id')
 const updateForm = document.querySelector('#updateForm')
+const adminBtn = document.querySelector('#adminBtn');
 
 
 const getEmployee = async () => {
@@ -42,3 +43,47 @@ const handleSubmit = async (e) => {
 
 }
 updateForm.addEventListener('submit', handleSubmit)
+
+
+
+
+const handleUpdate = async () => {
+  const token = localStorage.getItem('token')
+
+  const res = await fetch('http://localhost:7778/api/employees/newadmin', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify({ adminId: id })
+  })
+
+  console.log(res)
+
+  if(res.status != 201) {
+    const data = await res.json()
+    modal.querySelector('#modal-error').innerText = data.message
+    return
+  }
+  
+  location.assign('employees.html')
+}
+
+
+adminBtn.addEventListener('click', () => {
+  modal.classList.remove('d-none')
+})
+
+modal.addEventListener('click', e => {
+  if(e.target === e.currentTarget) {
+    modal.classList.add('d-none')
+  }
+})
+
+
+modal.querySelector('#nBtn').addEventListener('click', () => {
+  modal.classList.add('d-none')
+})
+
+modal.querySelector('#yBtn').addEventListener('click', handleUpdate)

@@ -13,7 +13,7 @@ exports.createNewPost = async (req, res) => {
   }
 
   // const post = await Post.create({ title, body, imgURL, author, tags })
-  const post = await Post.create({ title, body, imgURL, author: req.userId, tags })
+  const post = await Post.create({ title, body, imgURL, author: req.userData._id, tags })
 
   if(!post) {
     return res.status(500).json({ message: 'Something went wrong when creating the post' })

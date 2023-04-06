@@ -1,16 +1,27 @@
 const Employee = require('../schemas/employeeSchema')
+const Admin = require('../schemas/adminSchema')
 const bcrypt = require('bcryptjs')
 const auth = require('../authentication/auth');
 const { default: mongoose } = require('mongoose');
 
 exports.getAllEmployees = async (req, res) => {
   let employees = await Employee.find()
+  let admins = await Admin.find()
 
-  employees = employees.map(employee => {
-    return { _id: employee._id, firstName: employee.firstName, lastName: employee.lastName, email: employee.email }
+  const _employees = employees.map(emp => {
+
+    const employee = { _id: emp._id, firstName: emp.firstName, lastName: emp.lastName, email: emp.email }
+
+    admins.forEach(admin => {
+      if(admin.adminId.toString() == employee._id.toString()) {
+        employee.admin = true
+      }
+    })
+    return employee
+
   })
 
-  res.status(200).json(employees)
+  res.status(200).json(_employees)
 }
 
 exports.getById = async (req, res) => {
@@ -52,6 +63,29 @@ exports.addEmployee = async (req, res) => {
 
 }
 
+exports.addAdmin = async (req, res) => {
+  try {
+    const { adminId } = req.body;
+
+  if(!adminId) {
+    return res.status(400).json({ message: 'You need to enter a admin Id' })
+  }
+
+  const admin = await Admin.create({ adminId })
+
+  if(!admin) {
+    return res.status(500).json({ message: 'Something went wrong '})
+  }
+
+  res.status(201).json({ message: 'Admin added, you need to login again for it to work'})
+  } catch (err) {
+    if(err.code == 11000) {
+      return res.status(400).json({ message: 'this admin already exists'})
+    }
+    
+  }
+  
+}
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
@@ -70,16 +104,16 @@ exports.login = async (req, res) => {
       message: 'Jobbar du verkligen här?'
     })
   }
-
-   const result = await bcrypt.compare(password, employee.passwordHash)
-
-   if(!result) {
+  
+  const result = await bcrypt.compare(password, employee.passwordHash)
+  
+  if(!result) {
     return res.status(401).json({
       message: 'Jobbar du verkligen här?'
     })
-   }
+  }
 
-   res.status(200).json(auth.generateToken(employee))
+   res.status(200).json(await auth.generateToken(employee))
 }
 
 
